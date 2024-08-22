@@ -10,7 +10,7 @@ state = torch.load("<model-name>.pth")
 state = {key.replace("module.", ""): value for key, value in state.items()}
 model.load_state_dict(state)
 
-# Create pt file by tracing model
+# Create pt file by tracing model, edit input parameters to match with real input of model
 trace_input = torch.randn(1, 1, 32, 100)
 traced_script_module = torch.jit.trace(model, trace_input)
 traced_script_module.save("model.pt")
